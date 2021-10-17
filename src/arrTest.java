@@ -68,7 +68,7 @@ class ArraysTests {
 		int actual[] = new int[4];
 		int index = 2;
 		System.arraycopy(ar, 0, actual, 0, index);
-		System.arraycopy(ar, index + 1, actual, index, ar.length - index - 1);
+		System.arraycopy(ar, index + 1, actual, index, ar.length - index - 1); //[YG] actual.length - index would be better
 		int expected[] = {1, 2, 4, 5};
 		//TODO make sure the following assert will pass using System.arraycopy
 		assertArrayEquals(expected, actual);
@@ -78,6 +78,7 @@ class ArraysTests {
 		int ar[]= {1, 2, 3, 4, 5};
 		int actual[] = new int[6];
 		System.arraycopy(ar,0,actual,0,3); 
+		//[YG] better to introduce intermediate variable for an index value
 		actual[3]=-10;
 		System.arraycopy(ar,3,actual,4,2); 
 		int expected[] = {1, 2, 3,-10, 4, 5};
@@ -89,10 +90,12 @@ class ArraysTests {
 		//TODO write tests for Arrays.copyOf functionality according to the doc
 		int ar[] = {1, 2, 3};
         int actual[] = Arrays.copyOf(ar, 5);
+		//[YG] You might test zero values with no following additional statements
         actual[3] = 33;
         actual[4] = 44;
         int expected[] = {1, 2, 3, 33, 44};
 		assertArrayEquals(expected, actual);
+		//[YG] better to add tests for cases: length == ar.length and length < ar.length
 	
 	}
 	@Test
@@ -111,6 +114,7 @@ class ArraysTests {
 		int ar[] = {1, 2, 3, 4, 5};
 		int key = 3;
 		int index = Arrays.binarySearch(ar,key);
+		//[YG] lacks the tests
 	}
 
 }
